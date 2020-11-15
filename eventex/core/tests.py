@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 
-class HomTest(TestCase):
+class HomeTest(TestCase):
     def setUp(self):
         # preparacao de contexto
         self.response = self.client.get('/')  # client realiza requisicoes dentro do django e esta simulando acesso a urls '/'
