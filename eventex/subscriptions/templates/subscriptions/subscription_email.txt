@@ -1,0 +1,11 @@
+Olá.
+Muito obrigado
+
+Estes foram os dados do formulário:
+
+{{ name }}
+{{ cpf }}
+{{ email }}
+{{ phone }}
+
+Abraço!
