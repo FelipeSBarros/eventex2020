@@ -15,13 +15,14 @@ def subscribe(request):
     else:
         return new(request)
 
+
 def create(request):
     form = SubscriptionForm(request.POST)
 
     if not form.is_valid():
         messages.error(request, 'Formulario con error')
         return render(request, 'subscriptions/subscription_form.html',
-                          {'form': form})
+                      {'form': form})
 
     # send email
 
@@ -38,8 +39,10 @@ def create(request):
 
     return HttpResponseRedirect('/inscricao/')
 
+
 def new(request):
     return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
+
 
 def _send_mail(subject, from_, to, template_name, context):
     body = render_to_string(template_name, context)

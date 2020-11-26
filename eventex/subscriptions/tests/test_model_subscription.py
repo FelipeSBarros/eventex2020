@@ -2,6 +2,8 @@ from datetime import datetime
 
 from django.test import TestCase
 from eventex.subscriptions.models import Subscription
+
+
 class SubscriptionModelTest(TestCase):
     def setUp(self):
         self.obj = Subscription(

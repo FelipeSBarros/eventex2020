@@ -30,7 +30,6 @@ class SubscribeGet(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
-
     def test_csrf(self):
         """html must contains CSRF"""
         self.assertContains(self.resp, "csrfmiddlewaretoken")
@@ -39,6 +38,7 @@ class SubscribeGet(TestCase):
         """context must have subscription form"""
         form = self.resp.context['form']
         self.assertIsInstance(form, SubscriptionForm)
+
 
 class SubscribePostValid(TestCase):
     def setUp(self):
@@ -49,13 +49,14 @@ class SubscribePostValid(TestCase):
 
     def test_post(self):
         """Valid post should redirect to /inscricao/"""
-        self.assertEqual(302, self.resp.status_code) #302 codigo redirect
+        self.assertEqual(302, self.resp.status_code)  #302 codigo redirect
 
     def test_send_subscrie_email(self):
         self.assertEqual(1, len(mail.outbox))
 
     def test_save_subscription(self):
         self.assertTrue(Subscription.objects.exists())
+
 
 class SubscribePostInvalid(TestCase):
     def setUp(self):
@@ -78,6 +79,7 @@ class SubscribePostInvalid(TestCase):
 
     def test_dont_save_subscription(self):
         self.assertFalse(Subscription.objects.exists())
+
 
 class ClassSubscribeSuccessMessage(TestCase):
     def test_message(self):
