@@ -9,9 +9,15 @@
                 <div class="desktop-6">
                     {% if messages %}
                         {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="alert alert-warning" role="alert">
+                                <p>{{ message }} </p>
+                            </div>
+                            {% else %}
                             <div class="alert alert-success" role="alert">
                                 <p>{{ message }} </p>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                     <form action="." novalidate method="post">

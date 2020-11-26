@@ -16,7 +16,7 @@ class SubscribeGet(TestCase):
         self.assertTemplateUsed(self.resp, 'subscriptions/subscription_form.html')
 
     def teste_html(self):
-        """html must contin input tags"""
+        """html must contain input tags"""
         tags = (
             ('<form', 1),
             ('<input', 6),

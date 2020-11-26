@@ -17,6 +17,7 @@ def create(request):
     form = SubscriptionForm(request.POST)
 
     if not form.is_valid():
+        messages.error(request, 'Formulario con error')
         return render(request, 'subscriptions/subscription_form.html',
                           {'form': form})
 
