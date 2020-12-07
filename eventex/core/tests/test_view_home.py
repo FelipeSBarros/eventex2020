@@ -1,10 +1,11 @@
 from django.test import TestCase
+from django.shortcuts import resolve_url as r
 
 
 class HomeTest(TestCase):
     def setUp(self):
         # preparacao de contexto
-        self.response = self.client.get('/')  # client realiza requisicoes dentro do django e esta simulando acesso a urls '/'
+        self.response = self.client.get(r('home'))  # client realiza requisicoes dentro do django e esta simulando acesso a urls '/'
         # usa-se o self para que ele se torne atributo da instancia e possa ser usado nos demias testes
 
     def test_get(self):
@@ -16,4 +17,5 @@ class HomeTest(TestCase):
         self.assertTemplateUsed(self.response, 'index.html')
 
     def test_subscription_link(self):
-        self.assertContains(self.response, 'href="/inscricao/"')
+        expected = 'href="{}"'.format(r('subscriptions:new'))
+        self.assertContains(self.response, expected)
