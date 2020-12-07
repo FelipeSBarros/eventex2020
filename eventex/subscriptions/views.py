@@ -24,7 +24,9 @@ def create(request):
         return render(request, 'subscriptions/subscription_form.html',
                       {'form': form})
 
-    subscription = Subscription.objects.create(**form.cleaned_data)
+    subscription = Subscription(**form.cleaned_data)
+    subscription.cpf_hash = hash(subscription.cpf)
+    subscription.save()
     # send email
     _send_mail('Confirmação de Inscrição',
                settings.DEFAULT_FROM_EMAIL,
@@ -33,15 +35,15 @@ def create(request):
                {'subscription': subscription})
 
 
-    return HttpResponseRedirect('/inscricao/{}/'.format(subscription.pk))
+    return HttpResponseRedirect('/inscricao/{}/'.format(subscription.cpf_hash))
 
 
 def new(request):
     return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
 
-def detail(request, pk):
+def detail(request, cpf_hash):
     try:
-        subscription = Subscription.objects.get(pk=pk)
+        subscription = Subscription.objects.get(cpf_hash=cpf_hash)
     except Subscription.DoesNotExist:
         raise Http404
 

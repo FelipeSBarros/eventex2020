@@ -46,11 +46,13 @@ class SubscribePostValid(TestCase):
         data = dict(name="Henrique Bastos",
                     cpf='12345678901',
                     email="henrique@bastos.net", phone='21-9911-9933')
+        #data.cpf_hash = hash(data.cpf)
         self.resp = self.client.post('/inscricao/', data)
 
     def test_post(self):
         """Valid post should redirect to /inscricao/1/"""
-        self.assertRedirects(self.resp, '/inscricao/1/')
+        #print(f'/inscricao/{hash("12345678901")}/')
+        self.assertRedirects(self.resp, f'/inscricao/{hash("12345678901")}/')
 
     def test_send_subscrie_email(self):
         self.assertEqual(1, len(mail.outbox))
