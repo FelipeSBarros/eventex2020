@@ -7,7 +7,7 @@ class Subscription(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
-    cpf_hash = models.IntegerField()
+    cpf_hash = models.CharField(max_length=20)
 
     class Meta:
         verbose_name_plural = 'Inscrições'
