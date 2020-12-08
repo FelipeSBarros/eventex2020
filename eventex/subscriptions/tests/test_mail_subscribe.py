@@ -2,6 +2,7 @@ from django.core import mail
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 
+
 class SubscribePostValid(TestCase):
     def setUp(self):
         data = dict(name="Henrique Bastos",

@@ -38,7 +38,6 @@ def create(request):
                'subscriptions/subscription_email.txt',
                {'subscription': subscription})
 
-
     return HttpResponseRedirect(r('subscriptions:detail', subscription.cpf_hash))
 
 
@@ -49,6 +48,7 @@ def detail(request, cpf_hash):
         raise Http404
 
     return render(request, 'subscriptions/subscription_detail.html', {'subscription': subscription})
+
 
 def _send_mail(subject, from_, to, template_name, context):
     body = render_to_string(template_name, context)
