@@ -11,7 +11,7 @@ class SubscriptionModelTest(TestCase):
              cpf='12345678901',
              email='felipe.b4rros@gmail.com',
              phone='21-9911-9933')
-        self.obj.cpf_hash = hash(self.obj.cpf)
+        self.obj.cpf_hash = str(hash(self.obj.cpf))
         self.obj.save()
 
     def test_create(self):
@@ -23,11 +23,11 @@ class SubscriptionModelTest(TestCase):
 
     def test_has_hash(self):
         """Subscription must have an auto created hash based on cpf field"""
-        self.assertIsInstance(self.obj.cpf_hash, int)
+        self.assertIsInstance(self.obj.cpf_hash, str)
 
     def test_cpfhash(self):
         """cpfHash field must be equal to hash(cpf)"""
-        self.assertEqual(self.obj.cpf_hash, hash(self.obj.cpf))
+        self.assertEqual(self.obj.cpf_hash, str(hash(self.obj.cpf)))
 
     def test_str(self):
         self.assertEqual('Felipe', str(self.obj))
