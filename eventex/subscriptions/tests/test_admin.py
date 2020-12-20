@@ -16,18 +16,15 @@ class SubscriptionModelAdminTest(TestCase):
         """Action mark as paid should be installed"""
         self.assertIn('mark_as_paid', self.model_admin.actions)
 
-
     def test_mark_all(self):
         """It should mark all selected subscriptions as paid"""
         self.call_action()
         self.assertEqual(1, Subscription.objects.filter(paid=True).count())
 
-
     def test_message(self):
         """It should send a message to the user"""
         mock = self.call_action()
         mock.assert_called_once_with(None, '1 inscrição foi marcada como paga.')
-
 
     def call_action(self):
         queryset = Subscription.objects.all()
