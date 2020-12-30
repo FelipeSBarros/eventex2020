@@ -28,7 +28,7 @@ def create(request):
         return render(request, 'subscriptions/subscription_form.html',
                       {'form': form})
 
-    subscription = Subscription(**form.cleaned_data)
+    subscription = form.save()
     subscription.cpf_hash = hash(subscription.cpf)
     subscription.save()
     # send email
