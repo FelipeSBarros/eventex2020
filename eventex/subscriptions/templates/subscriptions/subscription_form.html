@@ -10,11 +10,9 @@
                     <form action="." novalidate method="post">
                         {% csrf_token %}
                         {% if form.non_field_errors %}
-                        {% for error in form.non_field_errors %}
                             <div class="alert alert-warning" role="alert">
-                                <p>{{ error }} </p>
+                            <p>{{ form.non_field_errors }} </p>
                             </div>
-                        {% endfor %}
                         {% endif %}
                         <div class="form-row label-block input-text">
                             <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
