@@ -3,6 +3,8 @@ from django.shortcuts import resolve_url as r
 
 
 class HomeTest(TestCase):
+    fixtures = ['keynotes.json']
+
     def setUp(self):
         # preparacao de contexto
         self.response = self.client.get(r('home'))  # client realiza requisicoes dentro do django e esta simulando acesso a urls '/'
@@ -22,8 +24,11 @@ class HomeTest(TestCase):
 
     def test_speakers(self):
         """Must show kenote speakers"""
-        contents = ['Grace Hopper', 'http://hbn.link/hopper-pic',
-                    'Alan Turing', 'http://hbn.link/turing-pic']
+        contents = [
+            'href="{}"'.format(r('speaker_detail', slug='grace-hopper')),
+            'Grace Hopper', 'http://hbn.link/hopper-pic',
+            'href="{}"'.format(r('speaker_detail', slug='alan-turing')),
+            'Alan Turing', 'http://hbn.link/turing-pic']
         for expected in contents:
             with self.subTest():
                 self.assertContains(self.response, expected)
