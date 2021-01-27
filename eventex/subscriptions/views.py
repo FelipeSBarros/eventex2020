@@ -49,7 +49,9 @@ def create(request):
 #         raise Http404
 #
 #     return render(request, 'subscriptions/subscription_detail.html', {'subscription': subscription})
-detail = DetailView.as_view(model=Subscription)
+detail = DetailView.as_view(model=Subscription,
+                            slug_url_kwarg="cpf_hash",
+                            slug_field="cpf_hash")
 
 def _send_mail(subject, from_, to, template_name, context):
     body = render_to_string(template_name, context)
