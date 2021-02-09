@@ -46,7 +46,7 @@ class EmailCreateMixin:
 class EmailCreateView(EmailCreateMixin, CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
-        # self.object = form.save()
+        self.object = form.save()
         self.object.cpf_hash = hash(self.object.cpf)
         self.object.save()
         self.send_mail()

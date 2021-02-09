@@ -4,5 +4,5 @@ from eventex.subscriptions.views import new, detail
 app_name = 'subscriptions'
 urlpatterns = [
     path('', new, name='new'),
-    path('<str:cpf_hash>/', detail, name='detail'),
+    path('<str:slug>/', detail, name='detail'),
 ]
