@@ -40,8 +40,8 @@ class SubscriptionForm(forms.ModelForm):
 
         return self.cleaned_data
 
-# def save(self):
-    #     instance = super().save(commit=False)
-    #     instance.cpf_hash = hash(instance.get('cpf'))
-    #     instance.save()
-    #     return instance
+    # def save(self):
+    #         instance = super().save(commit=False)
+    #         instance.slug = hash(instance.get('cpf'))
+    #         instance.save()
+    #         return instance

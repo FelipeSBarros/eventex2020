@@ -10,7 +10,7 @@ class Subscription(models.Model):
     email = models.EmailField('E-mail', blank=True)
     phone = models.CharField('Telefone', max_length=20, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    cpf_hash = models.CharField(max_length=20, blank=True)
+    slug = models.CharField(max_length=20, blank=True)
     paid = models.BooleanField("Pago", default=False)
 
     class Meta:
@@ -22,4 +22,4 @@ class Subscription(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return r('subscriptions:detail', self.cpf_hash)
+        return r('subscriptions:detail', self.slug)

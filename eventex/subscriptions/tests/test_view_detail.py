@@ -10,9 +10,9 @@ class SubscriptionDetailGet(TestCase):
             cpf='12345678901',
             email='felipe@sdd.com',
             phone='21-9911-9933',
-            cpf_hash=hash('12345678901')
+            slug=hash('12345678901')
         )
-        self.resp = self.client.get(r('subscriptions:detail', self.obj.cpf_hash))
+        self.resp = self.client.get(r('subscriptions:detail', self.obj.slug))
 
     def test_get(self):
         self.assertEqual(200, self.resp.status_code)
