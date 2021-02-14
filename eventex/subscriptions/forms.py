@@ -34,6 +34,7 @@ class SubscriptionForm(forms.ModelForm):
 
     def clean(self):
         self.cleaned_data = super().clean()
+        self.cleaned_data['cpf_hash'] = hash(self.cleaned_data.get('cpf'))
 
         if not self.cleaned_data.get('email') and not self.cleaned_data.get('phone'):
             raise ValidationError("informe e-mail ou Telefone.")

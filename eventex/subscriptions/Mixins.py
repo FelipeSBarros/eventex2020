@@ -29,7 +29,7 @@ class EmailCreateMixin:
 
     def get_email_context_data(self, **kwargs):
         context = dict(kwargs)
-        context.setdefault({self.get_context_email_name(): self.object})
+        context.setdefault(self.get_email_context_name(), self.object)
         return context
 
     def get_email_context_name(self):
@@ -40,14 +40,11 @@ class EmailCreateMixin:
     def get_email_to(self):
         if self.email_to:
             return self.email_to
-        return self.object.email_to
+        return self.object.email
 
 
 class EmailCreateView(EmailCreateMixin, CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
-        self.object = form.save()
-        self.object.cpf_hash = hash(self.object.cpf)
-        self.object.save()
         self.send_mail()
         return response

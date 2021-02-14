@@ -52,7 +52,7 @@ class SubscriptionsNewPostValid(TestCase):
         """Valid post should redirect to /inscricao/1/"""
         self.assertRedirects(self.resp, r('subscriptions:detail', hash("12345678901")))
 
-    def test_send_subscrie_email(self):
+    def test_send_subscribe_email(self):
         self.assertEqual(1, len(mail.outbox))
 
     def test_save_subscription(self):
@@ -64,7 +64,7 @@ class SubscriptionsNewPostInvalid(TestCase):
         self.resp = self.client.post(r('subscriptions:new'), {})
 
     def test_post(self):
-        """Invalid POST should noot redirect"""
+        """Invalid POST should not redirect"""
         self.assertEqual(200, self.resp.status_code)
 
     def test_template(self):
@@ -74,7 +74,7 @@ class SubscriptionsNewPostInvalid(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, SubscriptionForm)
 
-    def test_form_hs_errors(self):
+    def test_form_has_errors(self):
         form = self.resp.context['form']
         self.assertTrue(form.errors)
 

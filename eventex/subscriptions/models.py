@@ -22,4 +22,5 @@ class Subscription(models.Model):
         return self.name
 
     def get_absolute_url(self):
+        assert self.cpf_hash
         return r('subscriptions:detail', self.cpf_hash)
