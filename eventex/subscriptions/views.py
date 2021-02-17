@@ -10,5 +10,5 @@ new = EmailCreateView.as_view(
     email_subject='Confirmação de Inscrição')
 
 detail = DetailView.as_view(model=Subscription,
-                            slug_url_kwarg="cpf_hash",
+                            # slug_url_kwarg="cpf_hash",
                             slug_field="cpf_hash")

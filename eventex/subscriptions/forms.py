@@ -7,7 +7,7 @@ from eventex.subscriptions.models import Subscription
 class SubscriptionForm(forms.ModelForm):
     class Meta:
         model = Subscription
-        fields = ['name', 'cpf', 'email', 'phone']
+        fields = ['name', 'cpf', 'email', 'phone', 'cpf_hash']
 
     def clean_name(self):
         name = self.cleaned_data['name']

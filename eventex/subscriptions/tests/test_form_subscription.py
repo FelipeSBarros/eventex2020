@@ -7,7 +7,7 @@ class SubscriptionFormTest(TestCase):
     def test_form_has_fields(self):
         """form must have 4 fields"""
         form = SubscriptionForm()
-        expected = ['name', 'cpf', 'email', 'phone']
+        expected = ['name', 'cpf', 'email', 'phone', 'cpf_hash']
         self.assertSequenceEqual(expected, list(form.fields))
 
     def test_cpf_is_digit(self):
